@@ -1,6 +1,13 @@
-import { Link, Form, useActionData, type ActionFunctionArgs, redirect } from "react-router-dom"
+import { Link, Form, useActionData, type ActionFunctionArgs, redirect, type LoaderFunctionArgs } from "react-router-dom"
 import ErrorMessage from "../components/ErrorMessage"
 import { addProduct } from "../services/ProductService"
+
+// eslint-disable-next-line react-refresh/only-export-components
+export async function loader({params} : LoaderFunctionArgs) {
+    console.log(params.id)
+
+    return {}
+}
 
 // eslint-disable-next-line react-refresh/only-export-components
 export async function action({request} : ActionFunctionArgs) {
@@ -19,14 +26,14 @@ export async function action({request} : ActionFunctionArgs) {
     return redirect('/')
 }
 
-export default function NewProduct() {
+export default function EditProduct() {
 
     const error = useActionData() as string
 
     return (
         <>
             <div className="flex justify-between">
-                <h2 className="text-4xl font-black text-slate-500">Registrar Producto</h2>
+                <h2 className="text-4xl font-black text-slate-500">Editar Producto</h2>
                 <Link
                     to="/"
                     className="rounded-md bg-indigo-600 p-3 text-sm font-bold text-white shadow-sm hover:bg-indigo-500"
